@@ -1,0 +1,44 @@
+User documentation
+--------------------
+
+Before file utility can be used, compile 31316115_fileutil.c with gcc into fileutil. 
+    gcc -o fileutil 31316115_fileutil.c
+
+fileutil provides functionality to do basic commands in terminal including head, tail, and copy with optional number of lines. To use the utility, 
+user must type ./fileutility followed by optional source file, flags, and required arguments if needed. User can type the flag at most one each 
+and the flags can be typed in different orders and combinations as long as the required arguments followed the correct flag.
+
+By default, the file used for the utility is "sample.txt" in the current directory viewing 10 first lines in the file (head).
+e.g.    ./fileutil  
+        displays the first 10 lines of "sample.txt" file in terminal
+
+If user provides source file, it must be stated with absolute path right after ./fileutil.
+e.g.    ./fileutil /home/student/dir1/a.txt
+        displays the first 10 lines of "a.txt" file in terminal
+
+User can type "-d destination" to create a copy of file to the destination given, note that -d must be followed by an absolute existing destination
+path containing no file with the same name.
+e.g.    ./fileutil -d /home/student/dir2/
+        copy "sample.txt" to dir2 where the newly created "sample.txt" contains the first 10 lines
+        ./fileutil /home/student/dir1/a.txt -d /home/student/dir2/
+        copy "a.txt" to dir2 where the newly created "a.txt" contains the first 10 lines
+
+User can type "-n num" to specify number of lines to be used on the functionality, note that -n must be followed by a number. Functionality will 
+use either the default or given number of lines or all of lines if file contains less line than specified.
+e.g.    ./fileutil -n 20 /home/student/dir2/
+        displays the first 20 lines of "sample.txt" file in terminal
+        ./fileutil /home/student/dir1/a.txt -n 5
+        displays the first 5 lines of "a.txt" file in terminal
+
+User can type "-L" to specify functionality to take the required last number of lines (tail) instead of the required first number of lines (head is set
+by default).
+e.g.    ./fileutil -L /home/student/dir2/
+        displays the last 10 lines of "sample.txt" file in terminal
+        ./fileutil /home/student/dir1/a.txt -L
+        displays the last 10 lines of "a.txt" file in terminal
+
+Some example of commands with different orders and combinations of flag.
+e.g.    ./fileutil -L /home/student/dir2/ -n 15
+        displays the last 15 lines of "sample.txt" file in terminal
+        ./fileutil /home/student/dir1/a.txt -n 5 -d /home/student/dir2/ -L
+        copy "a.txt" to dir2 where the newly created "a.txt" contains the last 5 lines
